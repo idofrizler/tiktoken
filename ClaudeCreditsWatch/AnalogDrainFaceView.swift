@@ -78,7 +78,7 @@ struct AnalogDrainFaceView: View {
                                 .font(.system(size: diameter * 0.095, weight: .bold, design: .rounded))
                                 .foregroundStyle(Color.creditOrange)
 
-                            Text("5H")
+                            Text(MockCreditMath.compactTokenText(for: remainingPercent))
                                 .font(.system(size: diameter * 0.05, weight: .medium, design: .rounded))
                                 .foregroundStyle(Color.white.opacity(0.55))
                         }

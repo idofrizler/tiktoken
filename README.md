@@ -44,9 +44,10 @@ xcodegen generate
 - Tap the digital time to switch between the clock and reset countdown.
 - Long-press anywhere to open controls with a slider and preset values.
 
-The controls also provide one-, three-, and five-hour reset presets. The
-percentage and reset timestamp are the seams for replacing local values with
-Claude Code's official five-hour rate-limit snapshot later.
+The mock models a 500K token-equivalent five-hour allowance. It starts at 68%
+(340K remaining) with 2 hours 43 minutes until reset, so the default resembles
+an active session rather than a fresh window. The controls also provide one-,
+three-, and five-hour reset presets.
 
 ## Branding
 

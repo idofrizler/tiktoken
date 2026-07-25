@@ -3,9 +3,9 @@ import Foundation
 @main
 struct MathVerifier {
     static func main() {
-        precondition(MockCreditMath.remainingTokens(for: 80) == 800_000)
+        precondition(MockCreditMath.remainingTokens(for: 80) == 400_000)
         precondition(MockCreditMath.remainingTokens(for: -10) == 0)
-        precondition(MockCreditMath.remainingTokens(for: 120) == 1_000_000)
+        precondition(MockCreditMath.remainingTokens(for: 120) == 500_000)
 
         let thirtyPercent = (0..<5).map {
             MockCreditMath.fillForAlien(at: $0, percent: 30)

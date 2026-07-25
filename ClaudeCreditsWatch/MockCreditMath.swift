@@ -1,14 +1,14 @@
 import Foundation
 
 enum MockCreditMath {
-    static let monthlyTokenLimit = 1_000_000
+    static let fiveHourTokenLimit = 500_000
 
     static func clampedPercent(_ percent: Double) -> Double {
         min(max(percent, 0), 100)
     }
 
     static func remainingTokens(for percent: Double) -> Int {
-        Int((clampedPercent(percent) / 100 * Double(monthlyTokenLimit)).rounded())
+        Int((clampedPercent(percent) / 100 * Double(fiveHourTokenLimit)).rounded())
     }
 
     static func fillForAlien(at index: Int, percent: Double) -> Double {

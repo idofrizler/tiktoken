@@ -34,7 +34,7 @@ struct MockControlsView: View {
                             .font(.title2.bold())
                             .foregroundStyle(Color.creditOrange)
 
-                        Text("remaining")
+                        Text("\(MockCreditMath.compactTokenText(for: remainingPercent)) tokens remaining")
                             .font(.footnote)
                             .foregroundStyle(.secondary)
 

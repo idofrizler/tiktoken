@@ -40,7 +40,7 @@ struct FiveAliensFaceView: View {
                                 .monospacedDigit()
                                 .foregroundStyle(Color.creditOrange)
 
-                            Text("5H LEFT")
+                            Text(MockCreditMath.compactTokenText(for: remainingPercent))
                                 .font(.system(size: geometry.size.height * 0.043, weight: .medium, design: .rounded))
                                 .foregroundStyle(Color.white.opacity(0.52))
                         }

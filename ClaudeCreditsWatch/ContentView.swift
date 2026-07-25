@@ -19,6 +19,7 @@ enum FaceStyle: String, CaseIterable, Identifiable {
 struct ContentView: View {
     @AppStorage("remainingPercent") private var remainingPercent = 68.0
     @AppStorage("mockResetAt") private var mockResetAt = 0.0
+    @AppStorage("mockScenarioVersion") private var mockScenarioVersion = 0
     @AppStorage("selectedFace") private var selectedFaceRawValue = FaceStyle.fiveAliens.rawValue
     @State private var isShowingControls = false
     @FocusState private var receivesCrownInput: Bool
@@ -68,8 +69,12 @@ struct ContentView: View {
 #endif
         .onAppear {
             remainingPercent = MockCreditMath.clampedPercent(remainingPercent)
-            if resetDate <= .now {
-                mockResetAt = Date.now.addingTimeInterval(5 * 60 * 60).timeIntervalSince1970
+            if mockScenarioVersion < 1 {
+                remainingPercent = 68
+                mockResetAt = Date.now.addingTimeInterval((2 * 60 + 43) * 60).timeIntervalSince1970
+                mockScenarioVersion = 1
+            } else if resetDate <= .now {
+                mockResetAt = Date.now.addingTimeInterval((2 * 60 + 43) * 60).timeIntervalSince1970
             }
             receivesCrownInput = true
         }
