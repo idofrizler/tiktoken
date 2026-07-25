@@ -24,6 +24,7 @@ struct FiveAliensFaceView: View {
                         now: context.date,
                         height: geometry.size.height
                     )
+                    .frame(height: geometry.size.height * 0.235)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 0.2)) {
@@ -71,6 +72,9 @@ struct FiveAliensFaceView: View {
                 endRadius: 180
             )
         )
+        .onDisappear {
+            showsResetCountdown = false
+        }
     }
 
     @ViewBuilder

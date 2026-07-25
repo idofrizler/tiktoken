@@ -81,20 +81,6 @@ struct ContentView: View {
         .onChange(of: remainingPercent) { _, newValue in
             remainingPercent = MockCreditMath.clampedPercent(newValue)
         }
-        .onTapGesture {
-            toggleFace()
-        }
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 24)
-                .onEnded { value in
-                    let horizontalDistance = abs(value.translation.width)
-                    let verticalDistance = abs(value.translation.height)
-                    if horizontalDistance > 35, horizontalDistance > verticalDistance {
-                        toggleFace()
-                    }
-                },
-            including: .all
-        )
         .onLongPressGesture(minimumDuration: 0.55) {
             isShowingControls = true
         }
@@ -106,6 +92,25 @@ struct ContentView: View {
                 resetAt: $mockResetAt,
                 selectedFaceRawValue: $selectedFaceRawValue
             )
+        }
+        .overlay(alignment: .topLeading) {
+            Button(action: toggleFace) {
+                HStack(spacing: 5) {
+                    ForEach(FaceStyle.allCases) { style in
+                        Circle()
+                            .fill(
+                                style == selectedFace
+                                    ? Color.creditOrange
+                                    : Color.white.opacity(0.24)
+                            )
+                            .frame(width: 5, height: 5)
+                    }
+                }
+                .frame(width: 64, height: 44)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel("Switch watch design")
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Claude credits prototype")
