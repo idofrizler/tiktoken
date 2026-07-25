@@ -81,11 +81,20 @@ struct ContentView: View {
         .onChange(of: remainingPercent) { _, newValue in
             remainingPercent = MockCreditMath.clampedPercent(newValue)
         }
-        .onTapGesture(count: 2) {
-            withAnimation(.easeInOut(duration: 0.22)) {
-                selectedFace = selectedFace == .fiveAliens ? .analogDrain : .fiveAliens
-            }
+        .onTapGesture {
+            toggleFace()
         }
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 24)
+                .onEnded { value in
+                    let horizontalDistance = abs(value.translation.width)
+                    let verticalDistance = abs(value.translation.height)
+                    if horizontalDistance > 35, horizontalDistance > verticalDistance {
+                        toggleFace()
+                    }
+                },
+            including: .all
+        )
         .onLongPressGesture(minimumDuration: 0.55) {
             isShowingControls = true
         }
@@ -101,6 +110,12 @@ struct ContentView: View {
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Claude credits prototype")
         .accessibilityValue("\(Int(remainingPercent.rounded())) percent remaining")
+    }
+
+    private func toggleFace() {
+        withAnimation(.easeInOut(duration: 0.22)) {
+            selectedFace = selectedFace == .fiveAliens ? .analogDrain : .fiveAliens
+        }
     }
 }
 

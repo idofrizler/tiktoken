@@ -40,7 +40,8 @@ xcodegen generate
 ## Prototype controls
 
 - Rotate the Digital Crown to change the mocked remaining percentage.
-- Double-tap anywhere to switch between the two designs.
+- Tap anywhere outside the digital time to switch faces.
+- Swipe horizontally to switch faces as an alternative.
 - Tap the digital time to switch between the clock and reset countdown.
 - Long-press anywhere to open controls with a slider and preset values.
 
