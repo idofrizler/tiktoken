@@ -1,16 +1,18 @@
 # Claude Credits Watch
 
-A standalone SwiftUI watchOS prototype for visualizing mocked monthly Claude
-credits. It includes two full-screen, face-like designs:
+A standalone SwiftUI watchOS prototype for visualizing the remaining Claude
+five-hour allowance. It currently uses mock values and includes two full-screen,
+face-like designs:
 
 - **Five aliens:** a digital clock with five segmented pixel aliens along the
   bottom. Each alien represents 20% of the monthly allowance.
 - **Analog drain:** a quiet analog clock with one large alien that drains
-  vertically as the remaining allowance falls.
+  vertically as the remaining allowance falls. An orange bezel marker shows
+  the reset time.
 
-| Five aliens in the Series 11 simulator | Analog drain in the Series 11 simulator |
-| --- | --- |
-| ![Five alien digital design](Previews/watch-simulator.png) | ![Analog draining alien design](Previews/watch-simulator-analog.png) |
+| Digital clock | Reset countdown | Analog reset marker |
+| --- | --- | --- |
+| ![Five Clawd digital design](Previews/watch-simulator.png) | ![Five-hour reset countdown](Previews/watch-reset-countdown.png) | ![Analog draining Clawd design](Previews/watch-simulator-analog.png) |
 
 > Apple does not let third-party developers install fully custom system watch
 > faces. This project is a watchOS app that behaves like a face while it is
@@ -39,10 +41,12 @@ xcodegen generate
 
 - Rotate the Digital Crown to change the mocked remaining percentage.
 - Double-tap anywhere to switch between the two designs.
+- Tap the digital time to switch between the clock and reset countdown.
 - Long-press anywhere to open controls with a slider and preset values.
 
-The mock starts at a one-million-token monthly allowance. `MockCreditMath` is
-the seam for replacing local values with a real API response later.
+The controls also provide one-, three-, and five-hour reset presets. The
+percentage and reset timestamp are the seams for replacing local values with
+Claude Code's official five-hour rate-limit snapshot later.
 
 ## Branding
 

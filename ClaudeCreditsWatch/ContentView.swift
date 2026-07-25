@@ -18,6 +18,7 @@ enum FaceStyle: String, CaseIterable, Identifiable {
 
 struct ContentView: View {
     @AppStorage("remainingPercent") private var remainingPercent = 68.0
+    @AppStorage("mockResetAt") private var mockResetAt = 0.0
     @AppStorage("selectedFace") private var selectedFaceRawValue = FaceStyle.fiveAliens.rawValue
     @State private var isShowingControls = false
     @FocusState private var receivesCrownInput: Bool
@@ -27,16 +28,26 @@ struct ContentView: View {
         nonmutating set { selectedFaceRawValue = newValue.rawValue }
     }
 
+    private var resetDate: Date {
+        Date(timeIntervalSince1970: mockResetAt)
+    }
+
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
 
             switch selectedFace {
             case .fiveAliens:
-                FiveAliensFaceView(remainingPercent: remainingPercent)
+                FiveAliensFaceView(
+                    remainingPercent: remainingPercent,
+                    resetDate: resetDate
+                )
                     .transition(.opacity.combined(with: .scale(scale: 0.96)))
             case .analogDrain:
-                AnalogDrainFaceView(remainingPercent: remainingPercent)
+                AnalogDrainFaceView(
+                    remainingPercent: remainingPercent,
+                    resetDate: resetDate
+                )
                     .transition(.opacity.combined(with: .scale(scale: 0.96)))
             }
         }
@@ -57,6 +68,9 @@ struct ContentView: View {
 #endif
         .onAppear {
             remainingPercent = MockCreditMath.clampedPercent(remainingPercent)
+            if resetDate <= .now {
+                mockResetAt = Date.now.addingTimeInterval(5 * 60 * 60).timeIntervalSince1970
+            }
             receivesCrownInput = true
         }
         .onChange(of: remainingPercent) { _, newValue in
@@ -75,6 +89,7 @@ struct ContentView: View {
         }) {
             MockControlsView(
                 remainingPercent: $remainingPercent,
+                resetAt: $mockResetAt,
                 selectedFaceRawValue: $selectedFaceRawValue
             )
         }

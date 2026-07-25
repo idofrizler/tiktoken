@@ -12,13 +12,19 @@ struct PreviewRenderer {
         )
 
         try render(
-            FiveAliensFaceView(remainingPercent: 70),
+            FiveAliensFaceView(
+                remainingPercent: 70,
+                resetDate: .now.addingTimeInterval(2.5 * 60 * 60)
+            ),
             size: CGSize(width: 198, height: 242),
             to: outputDirectory.appendingPathComponent("five-aliens-70.png")
         )
 
         try render(
-            AnalogDrainFaceView(remainingPercent: 42),
+            AnalogDrainFaceView(
+                remainingPercent: 42,
+                resetDate: .now.addingTimeInterval(2.5 * 60 * 60)
+            ),
             size: CGSize(width: 198, height: 242),
             to: outputDirectory.appendingPathComponent("analog-drain-42.png")
         )

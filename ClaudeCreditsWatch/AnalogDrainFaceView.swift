@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AnalogDrainFaceView: View {
     let remainingPercent: Double
+    let resetDate: Date
 
     var body: some View {
         GeometryReader { geometry in
@@ -9,6 +10,7 @@ struct AnalogDrainFaceView: View {
                 let diameter = min(geometry.size.width, geometry.size.height)
                 let radius = diameter * 0.49
                 let angles = ClockAngles(date: context.date)
+                let resetAngle = ClockAngles(date: resetDate).hour
 
                 ZStack {
                     RadialGradient(
@@ -28,6 +30,12 @@ struct AnalogDrainFaceView: View {
                             .offset(y: -radius + diameter * 0.028)
                             .rotationEffect(.degrees(Double(tick) * 6))
                     }
+
+                    resetMarker(
+                        diameter: diameter,
+                        radius: radius,
+                        angle: resetAngle
+                    )
 
                     PixelAlienMeter(
                         fraction: remainingPercent / 100,
@@ -70,7 +78,7 @@ struct AnalogDrainFaceView: View {
                                 .font(.system(size: diameter * 0.095, weight: .bold, design: .rounded))
                                 .foregroundStyle(Color.creditOrange)
 
-                            Text(MockCreditMath.compactTokenText(for: remainingPercent))
+                            Text("5H")
                                 .font(.system(size: diameter * 0.05, weight: .medium, design: .rounded))
                                 .foregroundStyle(Color.white.opacity(0.55))
                         }
@@ -85,6 +93,26 @@ struct AnalogDrainFaceView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
+    }
+
+    private func resetMarker(
+        diameter: CGFloat,
+        radius: CGFloat,
+        angle: Double
+    ) -> some View {
+        VStack(spacing: 2) {
+            Circle()
+                .fill(Color.creditOrange)
+                .frame(width: diameter * 0.028, height: diameter * 0.028)
+
+            Capsule()
+                .fill(Color.creditOrange)
+                .frame(width: 2.5, height: diameter * 0.055)
+        }
+        .offset(y: -radius + diameter * 0.018)
+        .rotationEffect(.degrees(angle))
+        .shadow(color: Color.creditOrange.opacity(0.55), radius: 3)
+        .accessibilityLabel("Five hour allowance resets at \(resetDate.formatted(date: .omitted, time: .shortened))")
     }
 
     private func clockHand(
@@ -121,6 +149,9 @@ private struct ClockAngles {
 
 struct AnalogDrainFaceView_Previews: PreviewProvider {
     static var previews: some View {
-        AnalogDrainFaceView(remainingPercent: 42)
+        AnalogDrainFaceView(
+            remainingPercent: 42,
+            resetDate: .now.addingTimeInterval(2.5 * 60 * 60)
+        )
     }
 }
