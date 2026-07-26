@@ -1,18 +1,18 @@
 # Claude Credits Watch
 
 A standalone SwiftUI watchOS prototype for visualizing the remaining Claude
-five-hour allowance. It currently uses mock values and includes two full-screen,
-face-like designs:
+five-hour allowance. It currently uses mock values and focuses on a full-screen,
+digital face-like design:
 
 - **Five aliens:** a digital clock with five segmented pixel aliens along the
   bottom. Each alien represents 20% of the five-hour allowance.
-- **Analog drain:** a quiet analog clock with one large alien that drains
-  vertically as the remaining allowance falls. An orange bezel marker shows
-  the reset time.
 
-| Digital clock | Reset countdown | Analog reset marker |
-| --- | --- | --- |
-| ![Five Clawd digital design](Previews/watch-simulator.png) | ![Five-hour reset countdown](Previews/watch-reset-countdown.png) | ![Analog draining Clawd design](Previews/watch-simulator-analog.png) |
+| Digital clock | Reset countdown |
+| --- | --- |
+| ![Five Clawd digital design](Previews/watch-simulator.png) | ![Five-hour reset countdown](Previews/watch-reset-countdown.png) |
+
+The earlier analog design remains in the source for possible future use, but it
+is not exposed in the app.
 
 > Apple does not let third-party developers install fully custom system watch
 > faces. This project is a watchOS app that behaves like a face while it is
@@ -43,7 +43,6 @@ xcodegen generate
 ## Prototype controls
 
 - Rotate the Digital Crown to change the mocked remaining percentage.
-- Tap the two small dots at the top center to switch faces.
 - Tap the digital time to switch between the clock and reset countdown.
 - Long-press anywhere to open controls with a slider and preset values.
 

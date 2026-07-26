@@ -6,29 +6,27 @@ Credit Aliens is a standalone SwiftUI watchOS app that visualizes a mocked
 Claude five-hour allowance. It is intentionally a watch-only app; there is no
 iOS companion target and Apple does not permit third-party system watch faces.
 
-The two in-app designs are:
-
-- `FiveAliensFaceView`: digital clock/countdown with five horizontally filled
-  Clawd sprites.
-- `AnalogDrainFaceView`: analog dial with one vertically drained Clawd and a
-  reset-time marker.
+The active design is `FiveAliensFaceView`, a digital clock/countdown with five
+horizontally filled Clawd sprites. `AnalogDrainFaceView` is retained as dormant
+source for possible future use but must not be exposed without a new product
+decision.
 
 ## Important behavior
 
 - The Digital Crown changes the mocked remaining percentage.
-- The two dots at the top center switch designs. Keep them above all face
-  elements and preserve their large invisible hit target.
 - Tapping the digital clock toggles the reset countdown.
 - Clock and countdown content share a fixed-height frame so the date does not
   move.
+- Keep the five-mascot row at its current size; use typography and spacing for
+  readability improvements unless new feedback explicitly changes the mascots.
 - Long-pressing opens `MockControlsView`.
 - Default mock state is 68% of a 500K token-equivalent allowance with 2h43m
   until reset.
 
 ## Source map
 
-- `ClaudeCreditsWatch/ContentView.swift`: persisted mock state, face selection,
-  crown input, controls sheet, and selector dots.
+- `ClaudeCreditsWatch/ContentView.swift`: persisted mock state, crown input,
+  and controls sheet.
 - `ClaudeCreditsWatch/FiveAliensFaceView.swift`: digital design and countdown.
 - `ClaudeCreditsWatch/AnalogDrainFaceView.swift`: analog design and reset mark.
 - `ClaudeCreditsWatch/PixelAlienView.swift`: exact 12x8 Clawd sprite and partial

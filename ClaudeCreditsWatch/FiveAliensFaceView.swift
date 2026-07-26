@@ -13,18 +13,18 @@ struct FiveAliensFaceView: View {
                     Spacer(minLength: geometry.size.height * 0.02)
 
                     Text(context.date, format: .dateTime.weekday(.abbreviated).month(.abbreviated).day())
-                        .font(.system(size: geometry.size.height * 0.047, weight: .semibold, design: .rounded))
+                        .font(.system(size: geometry.size.height * 0.062, weight: .semibold, design: .rounded))
                         .textCase(.uppercase)
-                        .tracking(1)
-                        .foregroundStyle(Color.white.opacity(0.55))
+                        .tracking(1.2)
+                        .foregroundStyle(Color.white.opacity(0.62))
 
-                    Spacer(minLength: geometry.size.height * 0.035)
+                    Spacer(minLength: geometry.size.height * 0.025)
 
                     timeDisplay(
                         now: context.date,
                         height: geometry.size.height
                     )
-                    .frame(height: geometry.size.height * 0.235)
+                    .frame(height: geometry.size.height * 0.27)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 0.2)) {
@@ -37,13 +37,13 @@ struct FiveAliensFaceView: View {
                     VStack(spacing: geometry.size.height * 0.022) {
                         HStack(alignment: .firstTextBaseline, spacing: 5) {
                             Text("\(Int(remainingPercent.rounded()))%")
-                                .font(.system(size: geometry.size.height * 0.085, weight: .bold, design: .rounded))
+                                .font(.system(size: geometry.size.height * 0.095, weight: .bold, design: .rounded))
                                 .monospacedDigit()
                                 .foregroundStyle(Color.creditOrange)
 
                             Text(MockCreditMath.compactTokenText(for: remainingPercent))
-                                .font(.system(size: geometry.size.height * 0.043, weight: .medium, design: .rounded))
-                                .foregroundStyle(Color.white.opacity(0.52))
+                                .font(.system(size: geometry.size.height * 0.052, weight: .medium, design: .rounded))
+                                .foregroundStyle(Color.white.opacity(0.58))
                         }
 
                         HStack(spacing: geometry.size.width * 0.018) {
@@ -62,7 +62,7 @@ struct FiveAliensFaceView: View {
                     .padding(.bottom, geometry.size.height * 0.085)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .offset(y: -geometry.size.height * 0.035)
+                .offset(y: -geometry.size.height * 0.045)
             }
         }
         .background(
@@ -83,12 +83,12 @@ struct FiveAliensFaceView: View {
         if showsResetCountdown {
             VStack(spacing: height * 0.006) {
                 Text("RESET IN")
-                    .font(.system(size: height * 0.04, weight: .semibold, design: .rounded))
+                    .font(.system(size: height * 0.052, weight: .semibold, design: .rounded))
                     .tracking(1.4)
                     .foregroundStyle(Color.creditOrange)
 
                 Text(countdownText(from: now))
-                    .font(.system(size: height * 0.155, weight: .light, design: .rounded))
+                    .font(.system(size: height * 0.18, weight: .light, design: .rounded))
                     .monospacedDigit()
                     .foregroundStyle(.white)
                     .minimumScaleFactor(0.7)
@@ -97,13 +97,13 @@ struct FiveAliensFaceView: View {
         } else {
             HStack(alignment: .lastTextBaseline, spacing: 6) {
                 Text(now, format: .dateTime.hour().minute())
-                    .font(.system(size: height * 0.215, weight: .light, design: .rounded))
+                    .font(.system(size: height * 0.245, weight: .light, design: .rounded))
                     .monospacedDigit()
                     .foregroundStyle(.white)
                     .tracking(-2)
 
                 Text(String(format: "%02d", Calendar.current.component(.second, from: now)))
-                    .font(.system(size: height * 0.057, weight: .bold, design: .rounded))
+                    .font(.system(size: height * 0.07, weight: .bold, design: .rounded))
                     .monospacedDigit()
                     .foregroundStyle(Color.creditOrange)
                     .padding(.bottom, height * 0.017)
