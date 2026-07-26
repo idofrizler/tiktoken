@@ -93,7 +93,7 @@ struct ContentView: View {
                 selectedFaceRawValue: $selectedFaceRawValue
             )
         }
-        .overlay(alignment: .topLeading) {
+        .overlay(alignment: .top) {
             Button(action: toggleFace) {
                 HStack(spacing: 5) {
                     ForEach(FaceStyle.allCases) { style in
@@ -110,6 +110,7 @@ struct ContentView: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
+            .offset(y: -36)
             .accessibilityLabel("Switch watch design")
         }
         .accessibilityElement(children: .contain)

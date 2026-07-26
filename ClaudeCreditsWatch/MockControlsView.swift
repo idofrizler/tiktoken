@@ -66,7 +66,7 @@ struct MockControlsView: View {
 
                 Section("Shortcuts") {
                     Text("Crown adjusts credits")
-                    Text("Tap the top-left dots to switch face")
+                    Text("Tap the top-center dots to switch face")
                     Text("Tap digital time for countdown")
                     Text("Long-press opens this panel")
                 }

@@ -5,7 +5,7 @@ five-hour allowance. It currently uses mock values and includes two full-screen,
 face-like designs:
 
 - **Five aliens:** a digital clock with five segmented pixel aliens along the
-  bottom. Each alien represents 20% of the monthly allowance.
+  bottom. Each alien represents 20% of the five-hour allowance.
 - **Analog drain:** a quiet analog clock with one large alien that drains
   vertically as the remaining allowance falls. An orange bezel marker shows
   the reset time.
@@ -19,16 +19,19 @@ face-like designs:
 > open. A later WidgetKit complication can put the credit status on an actual
 > Apple watch face, but the complete custom layouts must remain inside the app.
 
-## Run it
+## Clone and run it
 
-1. Install the full Xcode app from the Mac App Store.
-2. Open `ClaudeCreditsWatch.xcodeproj`.
+1. Install the full Xcode app.
+2. Clone this repository and open `ClaudeCreditsWatch.xcodeproj`.
 3. Select the `ClaudeCreditsWatch` scheme and an Apple Watch simulator.
 4. Set your development team under **Signing & Capabilities** if you want to
-   install it on your own watch.
+   install it on a physical watch.
 5. Run the app.
 
-This Mac is configured with Xcode 26.6 and the watchOS 26.5 platform.
+For another Mac, iPhone, and paired Apple Watch, follow
+[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md). The receiving developer must select
+their signing team and replace the committed bundle identifier with one unique
+to that team.
 
 The committed Xcode project is generated from `project.yml`. To regenerate it:
 
@@ -40,7 +43,7 @@ xcodegen generate
 ## Prototype controls
 
 - Rotate the Digital Crown to change the mocked remaining percentage.
-- Tap the two small dots in the upper-left corner to switch faces.
+- Tap the two small dots at the top center to switch faces.
 - Tap the digital time to switch between the clock and reset countdown.
 - Long-press anywhere to open controls with a slider and preset values.
 
@@ -51,10 +54,12 @@ three-, and five-hour reset presets.
 
 ## Branding
 
-The Clawd mascot grid is adapted from
-`~/Git/clawd-invaders/assets/alien-pose-1.svg`, using the same warm
-terra-cotta palette.
+The Clawd mascot grid is adapted from a user-provided sprite, using the same
+warm terra-cotta palette.
 
 The app hides watchOS's system clock with the SDK's underscored
 `_statusBarHidden()` modifier. That choice is appropriate for this personal
 sideloaded prototype, but should be revisited before any App Store submission.
+
+The current build contains only mock usage data. It does not contain Claude
+credentials, API keys, or a live account connection.

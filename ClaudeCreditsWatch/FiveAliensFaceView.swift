@@ -10,7 +10,7 @@ struct FiveAliensFaceView: View {
         GeometryReader { geometry in
             TimelineView(.periodic(from: .now, by: 1)) { context in
                 VStack(spacing: 0) {
-                    Spacer(minLength: geometry.size.height * 0.055)
+                    Spacer(minLength: geometry.size.height * 0.02)
 
                     Text(context.date, format: .dateTime.weekday(.abbreviated).month(.abbreviated).day())
                         .font(.system(size: geometry.size.height * 0.047, weight: .semibold, design: .rounded))
@@ -59,9 +59,10 @@ struct FiveAliensFaceView: View {
                         .frame(height: geometry.size.height * 0.105)
                     }
                     .padding(.horizontal, geometry.size.width * 0.055)
-                    .padding(.bottom, geometry.size.height * 0.045)
+                    .padding(.bottom, geometry.size.height * 0.085)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .offset(y: -geometry.size.height * 0.035)
             }
         }
         .background(
